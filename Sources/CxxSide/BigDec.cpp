@@ -297,15 +297,17 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
     unsigned int counter = 0;
     
     while (true) {
-        if (counter > bD->aboveDecimal.data.size()) {
+        
+        if (counter > (bD->aboveDecimal.data.size() * 2)) {
             break;
         }
         counter++;
     }
     tCounter = counter;
     counter = 0;
+    
     while (true) {
-        if (counter > bD->belowDecimal.data.size()) {
+        if (counter > (bD->belowDecimal.data.size() * 8)) {
             break;
         }
         counter++;
