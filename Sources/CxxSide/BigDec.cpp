@@ -39,9 +39,11 @@ std::vector<binary> convertInt64ToBinary(int64_t integer) {
             finalBinary.push_back(0);
         }
         
+        std::cout << "remainder: " << remainder << std::endl;
         
         if (remainder == 1) {
-            finalBinary[charToModify] = finalBinary[charToModify] | (1 << (8 - binaryDigitToModify));
+            finalBinary[charToModify] = finalBinary[charToModify] | (1 << (7 - binaryDigitToModify));
+            
         }
         
         if (tInt < 1) {
@@ -50,13 +52,15 @@ std::vector<binary> convertInt64ToBinary(int64_t integer) {
         
         counter++;
     }
+    //Bug notes
+    //it is not setting the binary.
+    //It is runing properly but it is not converting it to binary properly
     
-    
-    std::cout << "final binary: ";
+    std::cout << "final binary(int num): ";
     
     
     for( int i = 0; i < finalBinary.size(); i++) {
-        std::cout << finalBinary[i];
+        std::cout << (int)finalBinary[i];
         
     }
     std::cout << std::endl;
