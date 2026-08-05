@@ -31,7 +31,7 @@ public struct BigDecimal: CustomStringConvertible {
         var count: UInt32 = 0;
         
         CxxSide.getBinaryDigitsInABigDecimal(decimal, &count)
-        
+        print("count: ", count)
         var array = [UInt32](repeating: 0, count: Int(count))
 
         array.withUnsafeMutableBufferPointer { ptr in
