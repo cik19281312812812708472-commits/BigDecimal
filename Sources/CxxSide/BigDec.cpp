@@ -65,6 +65,7 @@ std::vector<binary> convertInt64ToBinary(int64_t integer) {
     }
     std::cout << std::endl;
     
+    std::cout << "final bin size: " << finalBinary.size() << std::endl;
     return finalBinary;
 }
 
@@ -298,7 +299,7 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
     
     while (true) {
         
-        if (counter > (bD->aboveDecimal.data.size() * 2)) {
+        if (counter > (bD->aboveDecimal.data.size() * 8)) {
             break;
         }
         counter++;
