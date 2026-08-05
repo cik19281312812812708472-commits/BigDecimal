@@ -28,16 +28,15 @@ public struct BigDecimal: CustomStringConvertible {
     
     public var description: String {
         
-        var count: UInt32 = 0
+        var count: UInt32 = 0;
         
-        let pointer = CxxSide.getBinaryValue(decimal, &count)
+        CxxSide.getBinaryDigitsInABigDecimal(decimal, &count)
         
-        let array: [UInt32] = Array(
-            UnsafeBufferPointer(
-                start: pointer,
-                count: Int(count)
-            )
-        )
+        var array = [UInt32](repeating: 0, count: Int(count))
+
+        array.withUnsafeMutableBufferPointer { ptr in
+            CxxSide.getBinaryValue(decimal, ptr.baseAddress!)
+        }
         
         return array.description
     }

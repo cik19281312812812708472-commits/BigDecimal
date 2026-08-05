@@ -274,7 +274,29 @@ BigDecimal* addTwoBigDecimals(BigDecimal* decimal, BigDecimal* decimal_2) {
     return &finalDecimal;
 }
 
-const uint32_t* getBinaryValue(BigDecimal* bD, uint32_t* numOfDigits) {
+void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
+    
+    
+    unsigned int tCounter = 0;
+    unsigned int counter = 0;
+    while (true) {
+        if (counter > bD->aboveDecimal.data.size()) {
+            break;
+        }
+        counter++;
+    }
+    
+    counter = 0;
+    while (true) {
+        if (counter > bD->belowDecimal.data.size()) {
+            break;
+        }
+        counter++;
+    }
+    *numOfDigits = tCounter;
+}
+
+void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     
     std::vector<uint32_t> binaryValue(1, 0);
     //it will send the above decimal then 2 then below decimal.
@@ -325,9 +347,9 @@ const uint32_t* getBinaryValue(BigDecimal* bD, uint32_t* numOfDigits) {
     }
     
     tCounter += counter;
-    *numOfDigits = tCounter;
+   
     
-    return binaryValue.data();
+    binaryValues = binaryValue.data();
 }
 
 const char* getStringValue(BigDecimal* bD) {
