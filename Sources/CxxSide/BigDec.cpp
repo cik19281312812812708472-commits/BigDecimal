@@ -299,22 +299,26 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
     
     while (true) {
         
-        if (counter > (bD->aboveDecimal.data.size() * 8)) {
+        if (counter > (bD->aboveDecimal.data.size())) {
             break;
         }
         counter++;
     }
+    std::cout << "datasize: " << bD->aboveDecimal.data.size() << std::endl;
+    
     tCounter = counter;
     counter = 0;
     
     while (true) {
-        if (counter > (bD->belowDecimal.data.size() * 8)) {
+        if (counter > (bD->belowDecimal.data.size())) {
             break;
         }
         counter++;
     }
     
+    std::cout << "datasize2: " << bD->belowDecimal.data.size() << std::endl;
     tCounter += counter;
+    tCounter *= 8;
     
     *numOfDigits = tCounter;
 }
