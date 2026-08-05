@@ -319,7 +319,8 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
     
     std::cout << "datasize2: " << bD->belowDecimal.data.size() << std::endl;
     tCounter += counter;
-    
+    tCounter *= 8;
+        
     *numOfDigits = tCounter;
 }
 
@@ -337,7 +338,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
         int binaryDigitToLook = 7 - (counter % 8);
         int charToLook = counter / 8;
         
-        if (counter >= binaryValue.size()) {
+        if (counter > binaryValue.size()) {
             
             binaryValue.push_back(0);
         }
@@ -347,10 +348,11 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
         }
         // (tDecimal1[charToModify] >> binaryDigitToModify) & 1;
         
-        int bit = (bD->aboveDecimal.data[charToLook] >> binaryDigitToLook) & 1;
+        uint32_t bit = (bD->aboveDecimal.data[charToLook] >> binaryDigitToLook) & 1;
         
         binaryValue[counter] = bit;
         std::cout << "bit: " << bit << std::endl;
+        std::cout << "actualBit " << binaryValue[counter] << std::endl;
         counter++;
     }
     
@@ -363,7 +365,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
         int binaryDigitToLook = 7 - (counter % 8);
         int charToLook = counter / 8;
         
-        if (counter >= binaryValue.size()) {
+        if (counter > binaryValue.size()) {
             
             binaryValue.push_back(0);
         }
