@@ -334,7 +334,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     
     while (true) {
      
-        int binaryDigitToLook = 8 - (counter % 8);
+        int binaryDigitToLook = 7 - (counter % 8);
         int charToLook = counter / 8;
         
         if (counter >= binaryValue.size()) {
@@ -360,7 +360,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     
     counter = 0;
     while (true) {
-        int binaryDigitToLook = 8 - (counter % 8);
+        int binaryDigitToLook = 7 - (counter % 8);
         int charToLook = counter / 8;
         
         if (counter >= binaryValue.size()) {
@@ -381,7 +381,18 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     tCounter += counter;
    
     
+ 
+    
     binaryValues = binaryValue.data();
+    
+    std::cout << "binary values: ";
+    
+    for(int i = 0; i < sizeof(binaryValues); i++) {
+        std::cout << binaryValues[i] << ", ";
+    }
+    
+    std::cout << std::endl;
+    
 }
 
 const char* getStringValue(BigDecimal* bD) {
