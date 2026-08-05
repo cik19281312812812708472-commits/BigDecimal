@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "BigDecimal",
+    name: "Numbers",
     products: [
         .library(name: "BigDecimal", targets: ["BigDecimal"]),
         .library(name: "CxxSide", targets: ["CxxSide"])

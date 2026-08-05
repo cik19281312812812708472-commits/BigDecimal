@@ -7,12 +7,12 @@
 
 import CxxSide
 
-enum BigDecimalSign {
+public enum BigDecimalSign {
     case negative
     case positive
 }
 
-struct BigDecimal: CustomStringConvertible {
+public struct BigDecimal: CustomStringConvertible {
     
     var decimal: OpaquePointer
     
