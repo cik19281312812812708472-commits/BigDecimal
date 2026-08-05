@@ -19,6 +19,9 @@ typedef struct BigDecimal BigDec;
 
 BigDec* createBigDecimal(int64_t integer);
 
+const uint32_t* getBinaryValue(BigDecimal* bD, uint32_t* numOfDigits);
+
+BigDec* addTwoBigDecimals(BigDecimal* decimal, BigDecimal* decimal_2);
 
 
 #ifdef __cplusplus

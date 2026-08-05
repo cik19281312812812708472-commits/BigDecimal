@@ -12,7 +12,7 @@ enum BigDecimalSign {
     case positive
 }
 
-struct BigDecimal {
+struct BigDecimal: CustomStringConvertible {
     
     var decimal: OpaquePointer
     
@@ -22,7 +22,36 @@ struct BigDecimal {
         
     }
     
+    public init(decimalPointer: OpaquePointer) {
+        self.decimal = decimalPointer
+    }
     
+    public var description: String {
+        
+        var count: UInt32 = 0
+        
+        let pointer = CxxSide.getBinaryValue(decimal, &count)
+        
+        let array: [UInt32] = Array(
+            UnsafeBufferPointer(
+                start: pointer,
+                count: Int(count)
+            )
+        )
+        
+        return array.description
+    }
+    
+    
+    public static func + (lhs: BigDecimal, rhs: BigDecimal) -> BigDecimal {
+        
+        var Decimal = CxxSide.createBigDecimal(0)
+        Decimal = CxxSide.addTwoBigDecimals(lhs.decimal, rhs.decimal)
+        
+        return BigDecimal(decimalPointer: Decimal!)
+    }
+    
+
     
 }
 

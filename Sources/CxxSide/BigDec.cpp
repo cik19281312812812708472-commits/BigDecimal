@@ -85,7 +85,10 @@ void destroyBigDecimal(BigDecimal* bD) {
 }
 
 ///Please Destroy the two decimals that you give.
-BigDecimal addTwoBigDecimals(BigDecimal decimal1, BigDecimal decimal2) {
+BigDecimal* addTwoBigDecimals(BigDecimal* decimal, BigDecimal* decimal_2) {
+    
+    BigDecimal decimal1 = *decimal;
+    BigDecimal decimal2 = *decimal_2;
     
     //this represents the binary that will also be added to above the decimal
     BigDecimal* P_carryDec = createBigDecimal(0);
@@ -256,13 +259,82 @@ BigDecimal addTwoBigDecimals(BigDecimal decimal1, BigDecimal decimal2) {
     
     BigDecimal* temp = createBigDecimal(0);
     temp->aboveDecimal.data = tDecimal1;
-    addTwoBigDecimals(*temp, *P_carryDec);
+    BigDecimal finalDecimal = *addTwoBigDecimals(temp, P_carryDec);
     
     destroyBigDecimal(temp);
     destroyBigDecimal(P_carryDec);
+    
+    return &finalDecimal;
+}
+
+const uint32_t* getBinaryValue(BigDecimal* bD, uint32_t* numOfDigits) {
+    
+    std::vector<uint32_t> binaryValue(1, 0);
+    //it will send the above decimal then 2 then below decimal.
+    //geting aboveDecimal
+    
+    unsigned int tCounter = 0;
+    unsigned int counter = 0;
+    while (true) {
+     
+        int binaryDigitToLook = 8 - (counter % 8);
+        int charToLook = counter / 8;
+        
+        if (counter > binaryValue.size()) {
+            
+            binaryValue.push_back(0);
+        }
+        
+        if (counter > bD->aboveDecimal.data.size()) {
+            break;
+        }
+        // (tDecimal1[charToModify] >> binaryDigitToModify) & 1;
+        int bit = (bD->aboveDecimal.data[charToLook] >> binaryDigitToLook) & 1;
+        
+        binaryValue[counter] = bit;
+        counter++;
+    }
+    tCounter = counter;
+    binaryValue.push_back(2);
+    counter = 0;
+    while (true) {
+        int binaryDigitToLook = 8 - (counter % 8);
+        int charToLook = counter / 8;
+        
+        if (counter > binaryValue.size()) {
+            
+            binaryValue.push_back(0);
+        }
+        
+        if (counter > bD->belowDecimal.data.size()) {
+            break;
+        }
+        // (tDecimal1[charToModify] >> binaryDigitToModify) & 1;
+        int bit = (bD->belowDecimal.data[charToLook] >> binaryDigitToLook) & 1;
+        
+        binaryValue[counter] = bit;
+        counter++;
+    }
+    
+    tCounter += counter;
+    *numOfDigits = tCounter;
+    
+    return binaryValue.data();
 }
 
 const char* getStringValue(BigDecimal* bD) {
+    
+    
+    //It will send a list of 1s and zeros
+    unsigned int counter = 0;
+    while (true) {
+     
+        int binaryDigitToLook = 8 - (counter % 8);
+        int charToLook = counter / 8;
+        
+        
+        
+    }
     
 }
 
