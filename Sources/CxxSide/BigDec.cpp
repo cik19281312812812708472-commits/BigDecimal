@@ -342,7 +342,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
             binaryValue.push_back(0);
         }
         
-        if (counter >= bD->aboveDecimal.data.size()) {
+        if (counter >= (bD->aboveDecimal.data.size() * 8)) {
             break;
         }
         // (tDecimal1[charToModify] >> binaryDigitToModify) & 1;
@@ -368,7 +368,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
             binaryValue.push_back(0);
         }
         
-        if (counter >= bD->belowDecimal.data.size()) {
+        if (counter >= (bD->belowDecimal.data.size() * 8)) {
             break;
         }
         // (tDecimal1[charToModify] >> binaryDigitToModify) & 1;
