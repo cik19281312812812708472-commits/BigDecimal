@@ -15,7 +15,9 @@ typedef unsigned char binary;
 
 std::vector<binary> convertInt64ToBinary(int64_t integer) {
     //max num = 1 * 2^(2^64) and that is less than 2^64 which can be divided by 2, 64 times.
+    
     int64_t tInt = integer;
+    std::cout << "Integer: " << tInt << std::endl;
     
     // if the integer is 0 nothing happens
     std::vector<binary> finalBinary(1, 0);
@@ -48,6 +50,7 @@ std::vector<binary> convertInt64ToBinary(int64_t integer) {
         
         counter++;
     }
+    std::cout << "final binary: " << finalBinary.data() << std::endl;
     
     return finalBinary;
 }
@@ -80,9 +83,9 @@ BigDecimal* createBigDecimal(int64_t integer) {
     BigDecimal* bD = new BigDecimal();
     
     std::cout << "converting above decimal int to bin\n";
-    (*bD).aboveDecimal.data = convertInt64ToBinary(integer);
+    bD->aboveDecimal.data = convertInt64ToBinary(integer);
     std::cout << "converting below decimal int to bin\n";
-    (*bD).belowDecimal.data = convertInt64ToBinary(0);
+    bD->belowDecimal.data = convertInt64ToBinary(0);
     std::cout << "created decimal\n";
     return bD;
 }
@@ -294,6 +297,7 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
         }
         counter++;
     }
+    
     tCounter += counter;
     
     *numOfDigits = tCounter;
@@ -307,6 +311,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     
     unsigned int tCounter = 0;
     unsigned int counter = 0;
+    
     while (true) {
      
         int binaryDigitToLook = 8 - (counter % 8);
@@ -328,7 +333,9 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     }
     
     tCounter = counter;
+    
     binaryValue.push_back(2);
+    
     counter = 0;
     while (true) {
         int binaryDigitToLook = 8 - (counter % 8);
