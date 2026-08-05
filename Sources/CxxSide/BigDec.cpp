@@ -50,7 +50,16 @@ std::vector<binary> convertInt64ToBinary(int64_t integer) {
         
         counter++;
     }
-    std::cout << "final binary: " << finalBinary.data() << std::endl;
+    
+    
+    std::cout << "final binary: ";
+    
+    
+    for( int i = 0; i < finalBinary.size(); i++) {
+        std::cout << finalBinary[i];
+        
+    }
+    std::cout << std::endl;
     
     return finalBinary;
 }
