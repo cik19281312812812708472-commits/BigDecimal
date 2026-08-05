@@ -287,7 +287,7 @@ const uint32_t* getBinaryValue(BigDecimal* bD, uint32_t* numOfDigits) {
         int binaryDigitToLook = 8 - (counter % 8);
         int charToLook = counter / 8;
         
-        if (counter > binaryValue.size()) {
+        if (counter >= binaryValue.size()) {
             
             binaryValue.push_back(0);
         }
@@ -301,6 +301,7 @@ const uint32_t* getBinaryValue(BigDecimal* bD, uint32_t* numOfDigits) {
         binaryValue[counter] = bit;
         counter++;
     }
+    
     tCounter = counter;
     binaryValue.push_back(2);
     counter = 0;
@@ -308,7 +309,7 @@ const uint32_t* getBinaryValue(BigDecimal* bD, uint32_t* numOfDigits) {
         int binaryDigitToLook = 8 - (counter % 8);
         int charToLook = counter / 8;
         
-        if (counter > binaryValue.size()) {
+        if (counter >= binaryValue.size()) {
             
             binaryValue.push_back(0);
         }
