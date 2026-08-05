@@ -298,11 +298,11 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
     unsigned int counter = 0;
     
     while (true) {
-        
-        if (counter > (bD->aboveDecimal.data.size())) {
+        counter++;
+        if (counter >= (bD->aboveDecimal.data.size())) {
             break;
         }
-        counter++;
+        
     }
     std::cout << "datasize: " << bD->aboveDecimal.data.size() << std::endl;
     
@@ -310,10 +310,11 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
     counter = 0;
     
     while (true) {
-        if (counter > (bD->belowDecimal.data.size())) {
+        counter++;
+        if (counter >= (bD->belowDecimal.data.size())) {
             break;
         }
-        counter++;
+        
     }
     
     std::cout << "datasize2: " << bD->belowDecimal.data.size() << std::endl;
