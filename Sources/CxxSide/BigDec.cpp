@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <cstdint>
+#include <iostream>
 
 typedef unsigned char binary;
 
@@ -39,6 +40,10 @@ std::vector<binary> convertInt64ToBinary(int64_t integer) {
         
         if (remainder == 1) {
             finalBinary[charToModify] = finalBinary[charToModify] | (1 << (8 - binaryDigitToModify));
+        }
+        
+        if (tInt < 1) {
+            finishedBinaryDigits = true;
         }
         
         counter++;
@@ -74,9 +79,11 @@ BigDecimal* createBigDecimal(int64_t integer) {
     
     BigDecimal* bD = new BigDecimal();
     
+    std::cout << "converting above decimal int to bin\n";
     (*bD).aboveDecimal.data = convertInt64ToBinary(integer);
+    std::cout << "converting below decimal int to bin\n";
     (*bD).belowDecimal.data = convertInt64ToBinary(0);
-    
+    std::cout << "created decimal\n";
     return bD;
 }
 
