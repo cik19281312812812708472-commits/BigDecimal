@@ -393,8 +393,9 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
         std::cout << binaryValues[i] << ", ";
     }
     
-    std::cout << std::endl;
     
+    std::cout << std::endl;
+    std::cout << "first line: " << binaryValues[0] << std::endl;
 }
 
 const char* getStringValue(BigDecimal* bD) {
