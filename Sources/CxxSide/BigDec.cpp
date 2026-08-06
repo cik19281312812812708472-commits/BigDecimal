@@ -384,7 +384,11 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     tCounter += counter;
    
     
- 
+    std::cout << "True Bin values(before) : ";
+    for(int i = 0; i < binaryValue.size(); i++) {
+        std::cout << binaryValue[i] << ", ";
+    }
+    std::cout << std::endl;
     
     binaryValues = binaryValue.data();
     
