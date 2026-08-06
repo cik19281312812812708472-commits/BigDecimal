@@ -351,6 +351,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
         uint32_t bit = (bD->aboveDecimal.data[charToLook] >> binaryDigitToLook) & 1;
         
         binaryValue[counter] = bit;
+        std::cout << "Counter: " << counter << std::endl; 
         std::cout << "bit: " << bit << std::endl;
         std::cout << "actualBit " << binaryValue[counter] << std::endl;
         counter++;
