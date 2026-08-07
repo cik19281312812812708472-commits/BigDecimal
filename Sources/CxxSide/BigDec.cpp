@@ -14,6 +14,17 @@
 
 typedef unsigned char binary;
 
+
+struct Help {
+    
+   inline static std::vector<std::vector<uint32_t>> UInt32s;
+    
+};
+
+
+
+
+
 std::vector<binary> convertInt64ToBinary(int64_t integer) {
     //max num = 1 * 2^(2^64) and that is less than 2^64 which can be divided by 2, 64 times.
     
@@ -422,7 +433,44 @@ uint32_t* getBinaryValue(BigDecimal* bD) {
     }
     std::cout << std::endl;
     
-    return binaryValue.data();
+    
+    unsigned long size = Help::UInt32s.size();
+ 
+    Help::UInt32s.push_back(binaryValue);
+    
+    return Help::UInt32s[size + 1].data();
+    
+    unsigned long TempCounter = size + 2;
+    
+    std::vector<std::vector<uint32_t>> tempLoc;
+    
+    while (true) {
+        
+        if (TempCounter >= Help::UInt32s.size()) {
+            break;
+        }
+        
+        tempLoc.push_back(Help::UInt32s[TempCounter]);
+        
+        
+        
+        TempCounter++;
+    }
+    
+    
+    while (true) {
+        
+        if (TempCounter == size) {
+            break;
+        }
+        
+        Help::UInt32s.pop_back();
+        
+        TempCounter--;
+    }
+    
+    
+    
 }
 
 const char* getStringValue(BigDecimal* bD) {
