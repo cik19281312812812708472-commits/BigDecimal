@@ -377,7 +377,7 @@ uint32_t* getBinaryValue(BigDecimal* bD) {
     
     counter = 0;
     
-    std::vector<uint32_t> tempBinaryValue;
+    binaryValue.push_back(2);
     
 
     while (true) {
@@ -390,7 +390,7 @@ uint32_t* getBinaryValue(BigDecimal* bD) {
         // (tDecimal1[charToModify] >> binaryDigitToModify) & 1;
         uint32_t bit = (bD->belowDecimal.data[charToLook] >> binaryDigitToLook) & 1;
         
-        tempBinaryValue.push_back(bit);
+        binaryValue.push_back(bit);
         
         counter++;
     }
@@ -400,20 +400,8 @@ uint32_t* getBinaryValue(BigDecimal* bD) {
 
    
 
-    binaryValue.push_back(2);
-        
-    unsigned int tempCounter = 0;
-    while (true) {
-            
-        if (counter >= tempBinaryValue.size()) {
-            break;
-        }
-            
-        binaryValue.push_back(tempBinaryValue[tempCounter]);
-        
-        tempCounter++;
-    }
-        
+   
+    
     
    
     
