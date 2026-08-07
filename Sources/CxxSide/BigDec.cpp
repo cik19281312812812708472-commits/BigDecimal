@@ -326,7 +326,7 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
 
 void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     
-    std::vector<uint32_t> binaryValue(1, 0);
+    std::vector<uint32_t> binaryValue;
     //it will send the above decimal then 2 then below decimal.
     //geting aboveDecimal
     
@@ -374,6 +374,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
         counter++;
     }
     
+    std::cout << "Counter: " << counter << std::endl;
     if (counter > 0) {
         binaryValue.push_back(2);
         
