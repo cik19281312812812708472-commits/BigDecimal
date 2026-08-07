@@ -321,7 +321,9 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
     std::cout << "datasize2: " << bD->belowDecimal.data.size() << std::endl;
     tCounter += counter;
     tCounter *= 8;
-        
+    
+    //for the 2
+    tCounter += 1;
     *numOfDigits = tCounter;
 }
 
