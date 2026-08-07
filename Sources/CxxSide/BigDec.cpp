@@ -10,6 +10,7 @@
 #include <vector>
 #include <cstdint>
 #include <iostream>
+#include <algorithm>
 
 typedef unsigned char binary;
 
@@ -333,10 +334,15 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     unsigned int tCounter = 0;
     unsigned int counter = 0;
     
+    bool foundByte = false;
+    
+
+    
     while (true) {
      
         int binaryDigitToLook = 7 - (counter % 8);
         int charToLook = counter / 8;
+        
         
         if (counter >= (bD->aboveDecimal.data.size() * 8)) {
             break;
@@ -354,7 +360,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     
     tCounter = counter;
     
-   
+    std::reverse(binaryValue.begin(), binaryValue.end());
     
     counter = 0;
     
@@ -375,6 +381,8 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     }
     
     std::cout << "Counter: " << counter << std::endl;
+    std::cout << "size: " << (bD->belowDecimal.data.size() * 8) << std::endl;
+
     if (counter > 0) {
         binaryValue.push_back(2);
         
