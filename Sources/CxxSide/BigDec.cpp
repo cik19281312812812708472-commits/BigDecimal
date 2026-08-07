@@ -365,6 +365,8 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     counter = 0;
     
     std::vector<uint32_t> tempBinaryValue;
+    
+
     while (true) {
         int binaryDigitToLook = 7 - (counter % 8);
         int charToLook = counter / 8;
@@ -383,22 +385,23 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     std::cout << "Counter: " << counter << std::endl;
     std::cout << "size: " << (bD->belowDecimal.data.size() * 8) << std::endl;
 
-    if (counter > 0) {
-        binaryValue.push_back(2);
+   
+
+    binaryValue.push_back(2);
         
-        unsigned int tempCounter = 0;
-        while (true) {
+    unsigned int tempCounter = 0;
+    while (true) {
             
-            if (counter >= tempBinaryValue.size()) {
-                break;
-            }
-            
-            binaryValue.push_back(tempBinaryValue[tempCounter]);
-            
-            tempCounter++;
+        if (counter >= tempBinaryValue.size()) {
+            break;
         }
+            
+        binaryValue.push_back(tempBinaryValue[tempCounter]);
         
+        tempCounter++;
     }
+        
+    
    
     
     
