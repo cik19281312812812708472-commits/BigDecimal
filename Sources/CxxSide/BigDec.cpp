@@ -438,9 +438,9 @@ uint32_t* getBinaryValue(BigDecimal* bD) {
  
     Help::UInt32s.push_back(binaryValue);
     
-    return Help::UInt32s[size + 1].data();
+    return Help::UInt32s[size].data();
     
-    unsigned long TempCounter = size + 2;
+    unsigned long TempCounter = size + 1;
     
     std::vector<std::vector<uint32_t>> tempLoc;
     
@@ -460,7 +460,7 @@ uint32_t* getBinaryValue(BigDecimal* bD) {
     
     while (true) {
         
-        if (TempCounter == size) {
+        if (TempCounter == (size - 1)) {
             break;
         }
         
