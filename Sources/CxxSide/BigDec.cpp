@@ -338,19 +338,14 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
         int binaryDigitToLook = 7 - (counter % 8);
         int charToLook = counter / 8;
         
-        if (counter >= binaryValue.size()) {
-            
-            binaryValue.push_back(0);
-        }
-        
         if (counter >= (bD->aboveDecimal.data.size() * 8)) {
             break;
         }
-        // (tDecimal1[charToModify] >> binaryDigitToModify) & 1;
-        
+
         uint32_t bit = (bD->aboveDecimal.data[charToLook] >> binaryDigitToLook) & 1;
         
-        binaryValue.at(counter) = bit;
+        binaryValue.push_back(bit);
+        
         std::cout << "Counter: " << counter << std::endl;
         std::cout << "bit: " << bit << std::endl;
         std::cout << "actualBit " << binaryValue[counter] << std::endl;
@@ -359,30 +354,44 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     
     tCounter = counter;
     
-    binaryValue.push_back(2);
+   
     
     counter = 0;
+    
+    std::vector<uint32_t> tempBinaryValue;
     while (true) {
         int binaryDigitToLook = 7 - (counter % 8);
         int charToLook = counter / 8;
-        
-        if (counter > binaryValue.size()) {
-            
-            binaryValue.push_back(0);
-        }
         
         if (counter >= (bD->belowDecimal.data.size() * 8)) {
             break;
         }
         // (tDecimal1[charToModify] >> binaryDigitToModify) & 1;
-        int bit = (bD->belowDecimal.data[charToLook] >> binaryDigitToLook) & 1;
+        uint32_t bit = (bD->belowDecimal.data[charToLook] >> binaryDigitToLook) & 1;
         
-        binaryValue[counter] = bit;
+        tempBinaryValue.push_back(bit);
+        
         counter++;
     }
     
-    tCounter += counter;
+    if (counter > 0) {
+        binaryValue.push_back(2);
+        
+        unsigned int tempCounter = 0;
+        while (true) {
+            
+            if (counter >= tempBinaryValue.size()) {
+                break;
+            }
+            
+            binaryValue.push_back(tempBinaryValue[tempCounter]);
+            
+            tempCounter++;
+        }
+        
+    }
    
+    
     
     std::cout << "True Bin values(before) : ";
     for(int i = 0; i < binaryValue.size(); i++) {
