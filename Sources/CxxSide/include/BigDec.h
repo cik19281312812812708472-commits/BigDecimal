@@ -21,7 +21,7 @@ BigDec* createBigDecimal(int64_t integer);
 
 void getBinaryDigitsInABigDecimal(BigDec* bD, uint32_t* numOfDigits);
 
-void getBinaryValue(BigDec* bD, uint32_t* binaryValues);
+uint32_t* getBinaryValue(BigDec* bD);
 
 BigDec* addTwoBigDecimals(BigDec* decimal, BigDec* decimal_2);
 

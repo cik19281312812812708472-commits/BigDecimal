@@ -27,16 +27,17 @@ public struct BigDecimal: CustomStringConvertible {
     }
     
     public var description: String {
-        
+        //move this to a see binary function and adda debug description and make it finilly show the whole numbers using hte other number system.
         var count: UInt32 = 0;
         
         CxxSide.getBinaryDigitsInABigDecimal(decimal, &count)
         print("count: ", count)
-        var array = [UInt32](repeating: 0, count: Int(count))
+        
+        var pointer = CxxSide.getBinaryValue(decimal)
 
-        array.withUnsafeMutableBufferPointer { ptr in
-            CxxSide.getBinaryValue(decimal, ptr.baseAddress!)
-        }
+        var buffer = UnsafeBufferPointer(start: pointer, count: Int(count))
+        
+        var array = Array(buffer)
         
         return array.description
     }

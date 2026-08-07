@@ -327,7 +327,7 @@ void getBinaryDigitsInABigDecimal(BigDecimal* bD, uint32_t* numOfDigits) {
     *numOfDigits = tCounter;
 }
 
-void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
+uint32_t* getBinaryValue(BigDecimal* bD) {
     
     std::vector<uint32_t> binaryValue;
     //it will send the above decimal then 2 then below decimal.
@@ -413,7 +413,8 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     }
     std::cout << std::endl;
     
-    binaryValues = binaryValue.data();
+    
+    //note to self: dont return a new pointer.
     
     std::cout << "True Bin values: ";
     for(int i = 0; i < binaryValue.size(); i++) {
@@ -421,15 +422,7 @@ void getBinaryValue(BigDecimal* bD, uint32_t* binaryValues) {
     }
     std::cout << std::endl;
     
-    std::cout << "binary values: ";
-    
-    for(int i = 0; i < sizeof(binaryValues); i++) {
-        std::cout << binaryValues[i] << ", ";
-    }
-    
-    
-    std::cout << std::endl;
-    std::cout << "first line: " << binaryValues[0] << std::endl;
+    return binaryValue.data();
 }
 
 const char* getStringValue(BigDecimal* bD) {
